@@ -1,11 +1,9 @@
 <ul>
     {{#each stocks as |stock|}}
         <li>
-            {{#link-to "stocks.detail" stock}}
+            {{#link-to "stock-item" stock}}
                 {{stock.name}} ({{stock.symbol}})
             {{/link-to}}
         </li>
     {{/each}}
 </ul>
-
-{{yield}}
