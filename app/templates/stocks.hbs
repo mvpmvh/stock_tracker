@@ -1,3 +1,8 @@
 <h2>List of Stocks</h2>
 
-{{stock-list stocks=model}}
+{{#search-results-filter filter=(action 'filterStocks') as |search-results|}}
+    <ul class="search-results">
+        {{stock-list stocks=search-results}}
+    </ul>
+{{/search-results-filter}}
+

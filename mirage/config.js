@@ -59,7 +59,17 @@ export default function() {
         }
     }];
 
-    this.get('/stocks', () => {
+    this.get('/stocks', (db, request) => {
+        if(request.queryParams.symbol !== undefined) {
+            let filteredStocks = stock_data.filter(function(data) {
+                return data.attributes.symbol
+                        .toLowerCase()
+                        .indexOf(request.queryParams.symbol.toLowerCase()) !== -1;
+            });
+
+            return { data: filteredStocks };
+        }
+
         return {
             data: stock_data
         }
