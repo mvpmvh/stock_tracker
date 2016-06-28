@@ -1,19 +1,27 @@
-ember: &defaults
-  image: danlynn/ember-cli:2.6.2
-  volumes:
-    - .:/myapp
+version: '2'
+services:
+  api-server:
+    build: backend-server/
+    ports:
+      - '192.168.99.100:8081:8081'
+    entrypoint: ['node', 'api-server.js']
 
-npm:
-  <<: *defaults
-  entrypoint: ['/usr/local/bin/npm']
+  ember: &defaults
+    image: danlynn/ember-cli:2.6.2
+    volumes:
+      - .:/myapp
 
-bower:
-  <<: *defaults
-  entrypoint: ['/usr/local/bin/bower', '--allow-root']
+  npm:
+    <<: *defaults
+    entrypoint: ['/usr/local/bin/npm']
 
-server:
-  <<: *defaults
-  command: server --watcher polling
-  ports:
-    - "4200:4200"
-    - "49152:49152"
+  bower:
+    <<: *defaults
+    entrypoint: ['/usr/local/bin/bower', '--allow-root']
+
+  server:
+    <<: *defaults
+    command: server --watcher polling
+    ports:
+      - '192.168.99.100:4200:4200'
+      - '49152:49152'

@@ -50,7 +50,6 @@ router.get('/stocks/:id', (req, res) => {
     let symbol = req.params.id;
     const CHART_API = `http://chartapi.finance.yahoo.com/instrument/1.0/${symbol}/chartdata;type=quote;range=1m/json`;
     jsonp(CHART_API, 'finance_charts_json_callback',function(json) {
-        data.stock = json;
         res.json({"stock": json});
     });
 });

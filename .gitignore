@@ -17,3 +17,5 @@ npm-debug.log
 testem.log
 /.idea
 stock_tracker.iml
+
+backend-server/node_modules
