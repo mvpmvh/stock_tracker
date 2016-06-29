@@ -30,11 +30,6 @@ You will need the following things properly installed on your computer.
 * `docker-compose run --rm ember test`
 * `docker-compose run --rm ember test --server`
 
-### Building
-
-* `ember build` (development)
-* `ember build --environment production` (production)
-
 ## Further Reading / Useful Links
 
 * [ember.js](http://emberjs.com/)
