@@ -1,47 +1,39 @@
-# Myapp
+# Stock Tracker
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+Sample project application written to learn the [ember.js](http://emberjs.com)
+Search for stock names and view last 30 days of stock data.
+In addition to ember, this app is built using 
+
+* [Docker](https://www.docker.com/what-docker)
+* [node.js](https://nodejs.org)
+* [elastic](https://www.elastic.co/)
 
 ## Prerequisites
 
 You will need the following things properly installed on your computer.
 
 * [Git](http://git-scm.com/)
-* [Node.js](http://nodejs.org/) (with NPM)
-* [Bower](http://bower.io/)
-* [Ember CLI](http://ember-cli.com/)
-* [PhantomJS](http://phantomjs.org/)
+* [Docker Toolbox](https://www.docker.com/products/docker-toolbox)
 
 ## Installation
 
-* `git clone <repository-url>` this repository
+* `git clone https://github.com/mvpmvh/stock_tracker.git`
 * change into the new directory
-* `npm install`
-* `bower install`
 
 ## Running / Development
 
-* `ember server`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
-
-### Code Generators
-
-Make use of the many generators for code, try `ember help generate` for more details
+* `docker-compose up`
+* Visit your app at [http://192.168.99.100:4200/stocks](http://192.168.99.100:4200/stocks).
 
 ### Running Tests
 
-* `ember test`
-* `ember test --server`
+* `docker-compose run --rm ember test`
+* `docker-compose run --rm ember test --server`
 
 ### Building
 
 * `ember build` (development)
 * `ember build --environment production` (production)
-
-### Deploying
-
-Specify what it takes to deploy your app.
 
 ## Further Reading / Useful Links
 
@@ -50,4 +42,5 @@ Specify what it takes to deploy your app.
 * Development Browser Extensions
   * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
   * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
-
+* [Docker](https://www.docker.com/what-docker)
+* [Elastic](https://www.elastic.co/guide/en/elasticsearch/reference/current/getting-started.html)
