@@ -18,6 +18,12 @@ export default RESTSerializer.extend({
 
             hash.date = hash.Date;
         }
+
+        if (prop === 'stocks') {
+            hash.id = hash._source.Symbol;
+            hash.symbol = hash._source.Symbol;
+            hash.name = hash._source.Name;
+        }
         return this._super(...arguments);
     }
 });

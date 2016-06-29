@@ -4,6 +4,11 @@ let express = require('express');
 let app = express();
 let router = express.Router();
 let jsonp = require('node-jsonp');
+let elasticsearch = require('elasticsearch');
+let elastic_client = new elasticsearch.Client({
+    host: 'elasticsearch:9200',
+    log: 'trace'
+});
 
 // middleware to use for all requests
 router.use((req, res, next) => {
@@ -13,37 +18,35 @@ router.use((req, res, next) => {
     next(); // make sure we go to the next routes and don't stop here
 });
 
-const stocks =
-{
-    "stocks": [
-        {
-            name: 'Apple Inc.',
-            symbol: 'AAPL',
-            low: 112.04,
-            high: 172.23,
-            open: 115.14,
-            close: 144.43
-        },
-        {
-            name: 'Alphabet Inc.',
-            symbol: 'GOOGL',
-            low: 145.22,
-            high: 194.18,
-            open: 155.27,
-            close: 186.88
-        },
-        {
-            name: 'Yahoo! Inc.',
-            symbol: 'YHOO',
-            low: 32.56,
-            high: 45.68,
-            open: 35.03,
-            close: 33.27
-        }]
-};
-
 router.get('/stocks', (req, res) => {
-    res.json(stocks);
+    let body = {
+        "size" : 10,
+        "sort" : [{ "Name" : "asc" }]
+    };
+
+    if (req.query.symbol) {
+        body.query = {
+            "bool": {
+                "must": [
+                    { "match": { "Name": req.query.symbol}}
+                ]
+            }
+        };
+    }
+
+    elastic_client.search({
+        index: 'stock_index',
+        type: 'stock',
+        body: body
+    }).then((resp) => {
+        //console.log(resp.hits.hits);
+        res.send({"stocks": resp.hits.hits});
+    }, (err) => {
+        console.trace(err.message);
+        res.json({"error": {
+            "message": err.message
+        }});
+    });
 });
 
 router.get('/stocks/:id', (req, res) => {
@@ -53,7 +56,6 @@ router.get('/stocks/:id', (req, res) => {
         res.json({"stock": json});
     });
 });
-
 
 app.use('/api', router);
 

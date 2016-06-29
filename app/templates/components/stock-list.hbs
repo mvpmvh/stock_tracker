@@ -1,9 +1,12 @@
 <ul>
     {{#each stocks as |stock|}}
         <li>
-            {{#link-to "stock-item" stock}}
+            {{!-- {{#link-to "stock-item" stock}}
                 {{stock.name}} ({{stock.symbol}})
-            {{/link-to}}
+            {{/link-to}}--}}
+            <a href="/stocks/{{stock.symbol}}">
+                {{stock.name}} ({{stock.symbol}})
+            </a>
         </li>
     {{/each}}
 </ul>
