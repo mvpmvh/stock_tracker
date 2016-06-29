@@ -7,7 +7,6 @@ export default Ember.Component.extend({
         let symbol = store.get('symbol');
         let currency = store.get('currency');
         let history = store.get('series');
-        let labels = store.get('labels');
 
         let chart_data = {
             title:{
