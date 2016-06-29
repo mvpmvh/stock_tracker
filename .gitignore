@@ -19,3 +19,4 @@ testem.log
 stock_tracker.iml
 
 backend-server/node_modules
+elasticsearch-feed/node_modules

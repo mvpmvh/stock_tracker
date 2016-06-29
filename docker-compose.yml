@@ -25,3 +25,14 @@ services:
     ports:
       - '192.168.99.100:4200:4200'
       - '49152:49152'
+
+  elasticsearch:
+    image: elasticsearch:2.3.3
+    ports:
+      - '192.168.99.100:9200:9200'
+
+  elasticsearch-feed:
+    build: elasticsearch-feed/
+    depends_on:
+      - elasticsearch
+    entrypoint: ['./wait_for_elasticsearch.sh', 'elasticsearch', 'node', 'index.js']

@@ -1,8 +1,8 @@
 {
-  "name": "backend-server",
+  "name": "elasticsearch-feed",
   "version": "1.0.0",
-  "description": "api server for stock tracking",
-  "main": "api-server.js",
+  "description": "node script to populate elasticsearch indices",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,8 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "elasticsearch": "^11.0.1",
-    "express": "^4.14.0",
-    "jsonp": "^0.2.0",
-    "node-jsonp": "^1.0.2"
+    "elasticsearch-csv": "0.0.2"
   }
 }
